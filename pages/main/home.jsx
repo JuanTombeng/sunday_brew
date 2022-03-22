@@ -1,10 +1,33 @@
+import ReactPlayer from 'react-player'
 import MainLayout from "../../components/layout/MainLayout"
 import Image from 'next/image'
+import Link from "next/link";
 import style from '../../styles/Home.module.css'
 import Button from "../../components/base/Button"
-import dummy from '../../public/dummy.jpg'
+import CategoryCard from "../../components/module/CategoryCard"
+import ArticleCard from "../../components/module/ArticleCard"
+import LatestCard from "../../components/module/LatestCard"
+import dummy1 from '../../public/dummy1.svg'
+import dummy2 from '../../public/dummy2.svg'
 
-const Home = () => {
+export const getServerSideProps = async () => {
+    const response = await fetch("http://localhost:4000/v1/categories/", {
+        method : 'GET'
+    })
+    const responseArticle = await fetch("http://localhost:4000/v1/articles/", {
+        method : 'GET'
+    })
+    const data = await response.json()
+    const dataArticle = await responseArticle.json()
+    return {
+        props : {
+            data : data,
+            dataArticle : dataArticle
+        }
+    }
+}
+
+const Home = ({data, dataArticle}) => {
     return (
         <>
             <section className={`${style['main-wrapper']} d-flex`}>
@@ -22,59 +45,102 @@ const Home = () => {
                     />
                 </div>
             </section>
-            <section className={`${style["popular-tags"]} d-flex`}>
-                
-            </section>
-            <section className={`${style["category-tags"]} d-flex flex-column`}>
-                <p className={`${style["category-tags-title"]} d-flex`}>
-                    Category
-                </p>
-                <div className="d-flex">
-                    <div className={`${style["category-tags-cards"]} d-flex flex-column mx-3`}>
-                        <Image 
-                            className='img-fluid tags-rounded'
-                            src={dummy}
-                            alt="Logo Image"
-                            width={200}
-                            height={200}
-                        />
-                        <p className={`${style["category-tags-name"]} d-flex`}>
-                            Covid-19
-                        </p>
-                    </div>
-                    <div className={`${style["category-tags-cards"]} d-flex flex-column mx-3`}>
-                        <Image 
-                            className='img-fluid tags-rounded'
-                            src={dummy}
-                            alt="Logo Image"
-                            width={200}
-                            height={200}
-                        />
-                        <p className={`${style["category-tags-name"]} d-flex`}>
-                            Covid-19
-                        </p>
-                    </div>
-                    <div className={`${style["category-tags-cards"]} d-flex flex-column mx-3`}>
-                        <Image 
-                            className='img-fluid tags-rounded'
-                            src={dummy}
-                            alt="Logo Image"
-                            width={200}
-                            height={200}
-                        />
-                        <p className={`${style["category-tags-name"]} d-flex`}>
-                            Covid-19
-                        </p>
-                    </div>
+            <section className={`${style["popular-tags"]} d-flex flex-column flex-fill`}>
+                <div className="d-flex justify-content-between mb-3">
+                    <p className={`${style["popular-tags-title"]} d-flex`}>
+                        Popular Tags
+                    </p>
+                    <p className={`${style["popular-tags-subtitle"]} d-flex`}>
+                        More
+                    </p>
+                </div>
+                <div className="d-flex justify-content-between">
+                    <p className={`${style["popular-tags-item"]} d-flex`}>
+                        #covid-19
+                    </p>
+                    <p className={`${style["popular-tags-item"]} d-flex`}>
+                        #indrakenz
+                    </p>
+                    <p className={`${style["popular-tags-item"]} d-flex`}>
+                        #indrakenz
+                    </p>
+                    <p className={`${style["popular-tags-item"]} d-flex`}>
+                        #indrakenz
+                    </p>
                 </div>
             </section>
-            <section className={`${style["recommended-tags"]}`}>
-
+            <section className={`${style["category-tags"]} d-flex flex-column flex-fill`}>
+                <div className="d-flex justify-content-between mb-4">
+                    <p className={`${style["popular-tags-title"]} d-flex`}>
+                        Category
+                    </p>
+                    <p className={`${style["popular-tags-subtitle"]} d-flex`}>
+                        More
+                    </p>
+                </div>
+                <div className="d-flex">
+                    {
+                        data?.data.map((item) => {
+                            return <CategoryCard key={item.id} title={item.category_name} image={item.category_picture} />
+                        })
+                    }
+                </div>
             </section>
-            <section className={`${style["short-video-tags"]}`}>
-
+            <section className={`${style["recommended-tags"]} d-flex flex-column flex-fill`}>
+                <div className="d-flex justify-content-between mb-4">
+                    <p className={`${style["popular-tags-title"]} d-flex`}>
+                        Recommended
+                    </p>
+                    <p className={`${style["popular-tags-subtitle"]} d-flex`}>
+                        More
+                    </p>
+                </div>
+                <div className={`${style["recommended-tags-overflow"]} d-flex `}>
+                    {/* <ArticleCard image={dummy2} />
+                    <ArticleCard image={dummy2} /> */}
+                    {dataArticle?.data.map((item) => {
+                        return <Link href={`articles/${item.id}`}>
+                                    <a>
+                                        <ArticleCard key={item.id} image={item.article_picture} title={item.article_title} subtitle={item.article_description} 
+                                        like={item.like} time={item.created_at} />
+                                    </a>
+                                </Link>
+                    })}
+                </div>
             </section>
-            <section className={`${style["latest-news-tags"]}`}>
+            <section className={`${style["short-video-tags"]} d-flex`}>
+                <div className={`${style["short-video-left"]} d-flex flex-column justify-content-evenly`}>
+                    <h2 className={`${style["video-title"]}`}>
+                        Let's hear about Kayla's success story
+                    </h2>
+                    <h2 className={`${style["video-subtitle"]}`}>
+                        See how well News Today works in a real user’s life. 
+                    </h2>
+                    <Button 
+                        className={`${style['hero-button']}`}
+                        children="Let’s get started "
+                    />
+                </div>
+                <div className={`${style["short-video-right"]} d-flex justify-content-center align-items-center`}>
+                    <ReactPlayer controls
+                        url='https://www.youtube.com/watch?v=i9UYbJ2xMTI'
+                        style={{borderRadius: 20}}
+                    />
+                </div>
+            </section>
+            <section className={`${style["latest-news-tags"]} d-flex flex-column`}>
+                <div className="d-flex justify-content-between mb-4">
+                    <p className={`${style["popular-tags-title"]} d-flex`}>
+                        Latest News
+                    </p>
+                    <p className={`${style["popular-tags-subtitle"]} d-flex`}>
+                        More
+                    </p>
+                </div>
+                <div className="d-flex flex-column">
+                    <LatestCard image={dummy2} />
+                    <LatestCard image={dummy2} />
+                </div>
 
             </section>
         </>

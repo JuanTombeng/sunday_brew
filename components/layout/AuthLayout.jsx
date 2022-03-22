@@ -2,22 +2,28 @@ import Image from 'next/image'
 import authBg from '../../public/auth-bg.svg'
 import tea from '../../public/tea.svg'
 import leftArrow from '../../public/left-arrow.svg'
+import Link from "next/link";
+
 
 const AuthLayout = ({ children }) => {
     return (
         <div className="auth-layout d-flex">
             <div className="left d-flex flex-column p-4 justify-content-between">
                 <div className="back-to-home d-flex">
-                    <Image
-                        className='img-fluid icon-tea'
-                        src={leftArrow}
-                        alt="Picture tea Icon"
-                        width={30}
-                        height={30}
-                    />
-                    <p className="back-home-text">
-                        Home Page
-                    </p>
+                    <Link href="/main/home">
+                        <p className="back-home-text">
+                            <Image
+                                className='img-fluid icon-tea'
+                                src={leftArrow}
+                                alt="Picture tea Icon"
+                                width={30}
+                                height={30}
+                            />
+                            Home Page
+                        </p>
+
+                    </Link>
+
                 </div>
                 <div className="text mt-3">
                     <div className='d-flex justify-content-center align-items-center'>

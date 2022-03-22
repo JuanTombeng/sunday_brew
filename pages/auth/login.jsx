@@ -1,3 +1,6 @@
+import React, {useState} from "react";
+import Link from 'next/link'
+import { useRouter } from 'next/router';
 import AuthLayout from "../../components/layout/AuthLayout";
 import style from '../../styles/Login.module.css'
 import Image from 'next/image'
@@ -11,7 +14,37 @@ import Google from '../../public/Google.svg'
 import Facebook from '../../public/Facebook.svg'
 import Twitter from '../../public/Twitter.svg'
 
+
 const Login = () => {
+    const router = useRouter();
+    const [form, setForm] = useState({
+        email : '',
+        password : ''
+    })
+    const [errorMessage, setErrorMessage] = useState('')
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name] : e.target.value
+        })
+    }
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault()
+            const data = await fetch('http://localhost:4000/v1/users/login', {
+                method : 'POST',
+                headers : {
+                    'Content-Type': 'application/json',
+                },
+                body : JSON.stringify(form)
+            })
+            const result = await data.json()
+            localStorage.setItem('token', JSON.stringify(result?.data.token))
+            router.push('/main/home')
+        } catch (error) {
+            setErrorMessage(error.message)
+        }
+    }
     return (
         <>
             <h1 className={`${style['login-title']}`}>
@@ -23,16 +56,25 @@ const Login = () => {
                     label="Email Address :"
                     className={`${style['auth-input']} mb-2`}
                     placeholder="Enter your email address"
+                    onChange={handleChange}
+                    value={form.email}
+                    name="email"
+                    type="email"
                 />
                 <Input 
                     labelClass={`${style['label-input']} mb-2`} 
                     label="Password :"
                     className={`${style['auth-input']} mb-2`}
                     placeholder="Enter your email password"
+                    onChange={handleChange}
+                    value={form.password}
+                    name="password"
+                    type="password"
                 />
                 <Button 
                     className={`${style['auth-button']} my-5`}
                     children="Login"
+                    onClick={handleSubmit}
                 />
             </div>
             <div className={`${style['login-other']} d-flex justify-content-center my-3`}>
@@ -71,6 +113,9 @@ const Login = () => {
                     className={`${style['auth-signup-now']} mt-3`}
                     children="Sign Up Now"
                 />
+                {
+                    errorMessage && <h2 className={errorMessage}></h2>
+                }
             </div>
         </>
     )

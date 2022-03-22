@@ -1,50 +1,106 @@
-import react from "react";
+import React, {useState, useEffect} from "react";
+import Link from "next/link";
+import { useRouter } from 'next/router';
 import Image from 'next/image'
+import userIcon from '../../public/user-icon.svg'
 import tea from '../../public/tea.svg'
+import notifIcon from '../../public/notif-icon.svg'
 import Button from "../base/Button";
 
-const Navbar = (props) => {
+const Navbar = () => {
+    const [user, setUser] = useState(null)
+    useEffect(async () => {
+        try {
+            const token = JSON.parse(localStorage.getItem('token'))
+            const resp = await fetch("http://localhost:4000/v1/users/details   ", {
+                method : 'GET',
+                headers : {'Authorization': `Bearer ${token}`}
+            })
+            const data = await resp.json()
+            const result = data.data
+            setUser(result)
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
     return (
-        <>
-            <nav className="navbar d-flex px-5 w-100">
-                <div className="navbar-left d-flex">
-                    <h2 className="app-title">
-                        Morning Brew
-                    </h2>
-                    <Image 
-                        className='img-fluid pb-2'
-                        src={tea}
-                        alt="Logo Image"
-                        width={50}
-                        height={50}
-                    />
-                </div>
-                <div className="navbar-middle d-flex justify-content-between">
-                    <div className="nav-item nav-active">
+        <nav className="navbar d-flex px-5 w-100">
+            <div className="navbar-left d-flex">
+                <Link href="/main/home">
+                        <h2 className="app-title d-flex">
+                            Morning Brew
+                            <Image 
+                                className='img-fluid tea-nav-icon pb-2'
+                                src={tea}
+                                alt="Logo Image"
+                                width={50}
+                                height={50}
+                            />
+                        </h2>
+                </Link>
+            </div>
+            <div className="navbar-middle d-flex justify-content-between">
+                <Link href="/main/home">
+                    <div className="nav-item active">
                         Home
                     </div>
+                </Link>
+                <Link href="/main/articles">
                     <div className="nav-item">
                         Article
                     </div>
+                </Link>
+                <Link href="/main/category">
                     <div className="nav-item">
                         Category
                     </div>
+                </Link>
+                <Link href="/main/about">
                     <div className="nav-item">
                         About
                     </div>
-                </div>
-                <div className="navbar-right d-flex justify-content-center">
-                    <Button 
-                        className="navbar-button"
-                        children="Login"
-                    />
-                    <Button 
-                        className="navbar-button white"
-                        children="Sign Up"
-                    />
-                </div>
-            </nav>
-        </>
+                </Link>
+            </div>
+            <div className="navbar-right d-flex justify-content-end">
+                {
+                    user ? (
+                        <>
+                        <Image 
+                            className='img-fluid'
+                            src={notifIcon}
+                            alt="Logo Image"
+                            width={30}
+                            height={30}
+                        />
+                        <div className="nav-user-border ms-4">
+                            <Image 
+                                className='img-fluid nav-user-icon'
+                                src={user.profile_picture === null ? userIcon : user.profile_picture}
+                                alt="Logo Image"
+                                width={40}
+                                height={40}
+                            />
+                        </div>
+                        </>
+                    ) : (
+                        <>
+                        <Link href="/auth/login">
+                            <Button 
+                                className="navbar-button"
+                                children="Login"
+                            />
+                        </Link>
+                        <Link href="/auth/signup">
+                            <Button 
+                                className="navbar-button white"
+                                children="Sign Up"
+                            />
+                        </Link>
+                        </>
+                    )
+                }
+            </div>
+        </nav>
     )
 }
 
