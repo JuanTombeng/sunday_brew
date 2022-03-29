@@ -3,7 +3,7 @@ import Image from 'next/image'
 import style from '../../styles/Category.module.css'
 import Button from "../../components/base/Button"
 import CategoryCard from "../../components/module/CategoryCard"
-import dummy1 from '../../public/dummy1.svg'
+import dummy1 from '../../public/dummy1.jpg'
 import dummy2 from '../../public/dummy2.svg'
 import filterIcon from '../../public/filter-icon.svg'
 import Dropdown from 'react-bootstrap/Dropdown'

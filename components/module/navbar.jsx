@@ -28,9 +28,9 @@ const Navbar = () => {
             <div className="navbar-left d-flex">
                 <Link href="/main/home">
                         <h2 className="app-title d-flex">
-                            Morning Brew
+                            Sunday Brew
                             <Image 
-                                className='img-fluid tea-nav-icon pb-2'
+                                className='img-fluid tea-nav-icon pb-3'
                                 src={tea}
                                 alt="Logo Image"
                                 width={50}

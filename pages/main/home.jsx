@@ -7,7 +7,7 @@ import Button from "../../components/base/Button"
 import CategoryCard from "../../components/module/CategoryCard"
 import ArticleCard from "../../components/module/ArticleCard"
 import LatestCard from "../../components/module/LatestCard"
-import dummy1 from '../../public/dummy1.svg'
+import dummy1 from '../../public/dummy1.jpg'
 import dummy2 from '../../public/dummy2.svg'
 
 export const getServerSideProps = async () => {
@@ -138,8 +138,8 @@ const Home = ({data, dataArticle}) => {
                     </p>
                 </div>
                 <div className="d-flex flex-column">
-                    <LatestCard image={dummy2} />
-                    <LatestCard image={dummy2} />
+                    <LatestCard image={dummy1} />
+                    <LatestCard image={dummy1} />
                 </div>
 
             </section>

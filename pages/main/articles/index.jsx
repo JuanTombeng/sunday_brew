@@ -4,7 +4,7 @@ import Link from "next/link";
 import style from '../../../styles/Article.module.css'
 import Button from "../../../components/base/Button"
 import ArticleCard from "../../../components/module/ArticleCard"
-import dummy1 from '../../../public/dummy1.svg'
+import dummy1 from '../../../public/dummy1.jpg'
 import dummy2 from '../../../public/dummy2.svg'
 import filterIcon from '../../../public/filter-icon.svg'
 import Dropdown from 'react-bootstrap/Dropdown'

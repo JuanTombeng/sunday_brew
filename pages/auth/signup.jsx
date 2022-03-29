@@ -1,6 +1,7 @@
 import AuthLayout from "../../components/layout/AuthLayout";
 import style from '../../styles/Signup.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
 
 // components
 import Input from '../../components/base/Input'
@@ -73,10 +74,12 @@ const Signup = () => {
             </div>
             <div className={`${style['signup-middle-label']} d-flex flex-column mt-2`}>
                 <h2 className={`${style['middle-label-text']}`}><span>Already have an account?</span></h2>
-                <Button 
-                    className={`${style['auth-signup-now']} mt-3`}
-                    children="Login Now"
-                />
+                <Link href='/auth/login'>
+                    <Button 
+                        className={`${style['auth-signup-now']} mt-3`}
+                        children="Login Now"
+                    />
+                </Link>
             </div>
         </>
     )

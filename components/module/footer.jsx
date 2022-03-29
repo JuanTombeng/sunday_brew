@@ -41,7 +41,7 @@ const Footer = () => {
                     (621)989898934
                 </p>
                 <p className="footer-subtitle">
-                    morning.brew@gmail.com
+                    sunday.brew@gmail.com
                 </p>
             </div>
         </footer>

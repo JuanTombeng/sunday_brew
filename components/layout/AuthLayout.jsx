@@ -27,15 +27,15 @@ const AuthLayout = ({ children }) => {
                 </div>
                 <div className="text mt-3">
                     <div className='d-flex justify-content-center align-items-center'>
-                        <h1 className="auth-layout-title">
-                            Morning Brew
+                        <h1 className="auth-layout-title me-2">
+                            Sunday Brew
                         </h1>
                         <Image
-                            className='img-fluid icon-tea ms-2 mb-2'
+                            className='img-fluid icon-tea mb-2'
                             src={tea}
                             alt="Picture tea Icon"
-                            width={70}
-                            height={70}
+                            width={65}
+                            height={65}
                         />
                     </div>
                     <h4 className="auth-layout-subtitle text-center">

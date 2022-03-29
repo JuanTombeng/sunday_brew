@@ -109,10 +109,12 @@ const Login = () => {
             </div>
             <div className={`${style['login-middle-label']} d-flex flex-column mt-2`}>
                 <h2 className={`${style['middle-label-text']}`}><span>Don’t have an account?</span></h2>
-                <Button 
-                    className={`${style['auth-signup-now']} mt-3`}
-                    children="Sign Up Now"
-                />
+                <Link href='/auth/signup'>
+                    <Button 
+                        className={`${style['auth-signup-now']} mt-3`}
+                        children="Sign Up Now"
+                    />
+                </Link>
                 {
                     errorMessage && <h2 className={errorMessage}></h2>
                 }
