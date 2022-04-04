@@ -99,7 +99,7 @@ const Home = ({data, dataArticle}) => {
                     {/* <ArticleCard image={dummy2} />
                     <ArticleCard image={dummy2} /> */}
                     {dataArticle?.data.map((item) => {
-                        return <Link href={`articles/${item.id}`}>
+                        return <Link href={`articles/${item.id}`} passHref>
                                     <a>
                                         <ArticleCard key={item.id} image={item.article_picture} title={item.article_title} subtitle={item.article_description} 
                                         like={item.like} time={item.created_at} />

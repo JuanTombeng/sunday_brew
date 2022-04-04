@@ -29,7 +29,7 @@ const Navbar = () => {
     return (
         <nav className="navbar d-flex px-5 w-100">
             <div className="navbar-left d-flex">
-                <Link href="/main/home">
+                <Link href="/main/home" passHref>
                         <h2 className="app-title d-flex">
                             Sunday Brew
                             <Image 
@@ -43,22 +43,22 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className="navbar-middle d-flex justify-content-between">
-                <Link href="/main/home">
+                <Link href="/main/home" passHref>
                     <div className="nav-item active">
                         Home
                     </div>
                 </Link>
-                <Link href="/main/articles">
+                <Link href="/main/articles" passHref>
                     <div className="nav-item">
                         Article
                     </div>
                 </Link>
-                <Link href="/main/category">
+                <Link href="/main/category" passHref>
                     <div className="nav-item">
                         Category
                     </div>
                 </Link>
-                <Link href="/main/about">
+                <Link href="/main/about" passHref>
                     <div className="nav-item">
                         About
                     </div>
@@ -87,13 +87,13 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                        <Link href="/auth/login">
+                        <Link href="/auth/login" passHref>
                             <Button 
                                 className="navbar-button">
                                 Login
                             </Button>
                         </Link>
-                        <Link href="/auth/signup">
+                        <Link href="/auth/signup" passHref>
                             <Button 
                                 className="navbar-button white">
                                 Sign Up

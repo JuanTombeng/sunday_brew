@@ -74,7 +74,7 @@ const Signup = () => {
             </div>
             <div className={`${style['signup-middle-label']} d-flex flex-column mt-2`}>
                 <h2 className={`${style['middle-label-text']}`}><span>Already have an account?</span></h2>
-                <Link href='/auth/login'>
+                <Link href='/auth/login' passHref>
                     <Button 
                         className={`${style['auth-signup-now']} mt-3`}>
                             Login Now
