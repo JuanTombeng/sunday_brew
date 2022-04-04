@@ -9,20 +9,23 @@ import Button from "../base/Button";
 
 const Navbar = () => {
     const [user, setUser] = useState(null)
-    useEffect(async () => {
-        try {
-            const token = JSON.parse(localStorage.getItem('token'))
-            const resp = await fetch("https://sunday-brew.herokuapp.com/v1/users/details", {
-                method : 'GET',
-                headers : {'Authorization': `Bearer ${token}`}
-            })
-            const data = await resp.json()
-            const result = data.data
-            setUser(result)
-        } catch (error) {
-            console.log(error)
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const token = JSON.parse(localStorage.getItem('token'))
+                const resp = await fetch("https://sunday-brew.herokuapp.com/v1/users/details", {
+                    method : 'GET',
+                    headers : {'Authorization': `Bearer ${token}`}
+                })
+                const data = await resp.json()
+                const result = data.data
+                setUser(result)
+            } catch (error) {
+                console.log(error)
+            }
         }
-    }, [])
+        fetchData()
+    })
     return (
         <nav className="navbar d-flex px-5 w-100">
             <div className="navbar-left d-flex">
@@ -86,15 +89,15 @@ const Navbar = () => {
                         <>
                         <Link href="/auth/login">
                             <Button 
-                                className="navbar-button"
-                                children="Login"
-                            />
+                                className="navbar-button">
+                                Login
+                            </Button>
                         </Link>
                         <Link href="/auth/signup">
                             <Button 
-                                className="navbar-button white"
-                                children="Sign Up"
-                            />
+                                className="navbar-button white">
+                                Sign Up
+                            </Button>
                         </Link>
                         </>
                     )

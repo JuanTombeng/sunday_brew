@@ -40,9 +40,9 @@ const LatestCard = ({image, title, author, subtitle, like, time, saved, buttonCl
             </div>
             <div className="d-flex w-50 justify-content-end align-items-center">
                 <Button 
-                    className="latest-card-button"
-                    children="Start Exploring"
-                />
+                    className="latest-card-button">
+                    Start Exploring
+                </Button>
             </div>
         </div>
     )

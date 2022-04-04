@@ -62,9 +62,9 @@ const ArticleDetails = ({article}) => {
                         />
                     </div>
                     <Button 
-                        className={`${style['article-detail-button']} w-100`}
-                        children="Start Exploring"
-                    />
+                        className={`${style['article-detail-button']} w-100`}>
+                        Start Exploring
+                    </Button>
                 </div>
             </section>
             <section className={`${style['article-lower']} d-flex my-3`}>

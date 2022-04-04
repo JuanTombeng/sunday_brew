@@ -73,9 +73,9 @@ const Login = () => {
                 />
                 <Button 
                     className={`${style['auth-button']} my-5`}
-                    children="Login"
-                    onClick={handleSubmit}
-                />
+                    onClick={handleSubmit}>
+                    Login
+                </Button>
             </div>
             <div className={`${style['login-other']} d-flex justify-content-center my-3`}>
                 <div className="d-flex flex-column">
@@ -111,9 +111,9 @@ const Login = () => {
                 <h2 className={`${style['middle-label-text']}`}><span>Don’t have an account?</span></h2>
                 <Link href='/auth/signup'>
                     <Button 
-                        className={`${style['auth-signup-now']} mt-3`}
-                        children="Sign Up Now"
-                    />
+                        className={`${style['auth-signup-now']} mt-3`}>
+                        Sign Up Now
+                    </Button>
                 </Link>
                 {
                     errorMessage && <h2 className={errorMessage}></h2>

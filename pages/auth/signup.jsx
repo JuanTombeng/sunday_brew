@@ -38,9 +38,9 @@ const Signup = () => {
                     placeholder="Enter your phone number"
                 />
                 <Button 
-                    className={`${style['auth-button']} my-3`}
-                    children="Signup"
-                />
+                    className={`${style['auth-button']} my-3`}>
+                        Sign Up
+                    </Button>
             </div>
             <div className={`${style['signup-other']} d-flex justify-content-center my-3`}>
                 <div className="d-flex flex-column">
@@ -76,9 +76,9 @@ const Signup = () => {
                 <h2 className={`${style['middle-label-text']}`}><span>Already have an account?</span></h2>
                 <Link href='/auth/login'>
                     <Button 
-                        className={`${style['auth-signup-now']} mt-3`}
-                        children="Login Now"
-                    />
+                        className={`${style['auth-signup-now']} mt-3`}>
+                            Login Now
+                    </Button>
                 </Link>
             </div>
         </>

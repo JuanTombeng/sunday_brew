@@ -40,9 +40,9 @@ const Home = ({data, dataArticle}) => {
                         Be an author and share you prespective of something to the world.
                     </p>
                     <Button 
-                        className={`${style['hero-button']}`}
-                        children="Start Exploring"
-                    />
+                        className={`${style['hero-button']}`}>
+                            Start Exploring
+                    </Button>
                 </div>
             </section>
             <section className={`${style["popular-tags"]} d-flex flex-column flex-fill`}>
@@ -117,9 +117,9 @@ const Home = ({data, dataArticle}) => {
                         See how well News Today works in a real user’s life. 
                     </h2>
                     <Button 
-                        className={`${style['hero-button']}`}
-                        children="Let’s get started "
-                    />
+                        className={`${style['hero-button']}`}>
+                        Let’s get started
+                    </Button>
                 </div>
                 <div className={`${style["short-video-right"]} d-flex justify-content-center align-items-center`}>
                     <ReactPlayer controls

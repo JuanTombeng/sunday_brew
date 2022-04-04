@@ -34,9 +34,9 @@ const Article = ({data}) => {
                         You can be an author by being active in reading artciles in a month or you can request to be an author if you have been a member for three months.
                     </p>
                     <Button 
-                        className={`${style['hero-button']}`}
-                        children="Start Writing"
-                    />
+                        className={`${style['hero-button']}`}>
+                        Start Writing
+                    </Button>
                 </div>
             </section>
             <section className={`${style["filter-tags"]} d-flex flex-column`}>

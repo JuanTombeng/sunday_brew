@@ -28,7 +28,7 @@ const ArticleCard = ({image, title, subtitle, like, time, saved}) => {
                     <p className="article-card-text d-flex">
                         {like ? like : "2.1K"}
                     </p>
-                    <p className="article-card-text d-flex mx-4" datetime={time}>
+                    <p className="article-card-text d-flex mx-4" dateTime={time}>
                         {time ? timeago.format(Date.now() - time) : "3m ago"}
                         {/* {time ? timeago.format(Date.now() - (moment(time).format('DD MMM, YYYY'))) : "recently"} */}
                     </p>
