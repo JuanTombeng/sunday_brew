@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export const Home = () => {
+const Landing = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -11,3 +11,5 @@ export const Home = () => {
     </div>
   )
 }
+
+export default Landing
