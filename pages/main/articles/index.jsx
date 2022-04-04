@@ -10,7 +10,7 @@ import filterIcon from '../../../public/filter-icon.svg'
 import Dropdown from 'react-bootstrap/Dropdown'
 
 export const getServerSideProps = async () => {
-    const response = await fetch("https://sunday-brew.herokuapp.com/v1/articles/", {
+    const response = await fetch("http://localhost:4000/v1/articles/", {
         method : 'GET'
     })
     const data = await response.json()
@@ -33,10 +33,12 @@ const Article = ({data}) => {
                     <p className={`${style['hero-parag']}`}>
                         You can be an author by being active in reading artciles in a month or you can request to be an author if you have been a member for three months.
                     </p>
-                    <Button 
-                        className={`${style['hero-button']}`}>
-                        Start Writing
-                    </Button>
+                    <Link href="/main/articles/write" passHref>
+                        <Button 
+                            className={`${style['hero-button']}`}>
+                            Start Writing
+                        </Button>
+                    </Link>
                 </div>
             </section>
             <section className={`${style["filter-tags"]} d-flex flex-column`}>

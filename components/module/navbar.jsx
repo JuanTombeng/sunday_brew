@@ -13,7 +13,7 @@ const Navbar = () => {
         const fetchData = async () => {
             try {
                 const token = JSON.parse(localStorage.getItem('token'))
-                const resp = await fetch("https://sunday-brew.herokuapp.com/v1/users/details", {
+                const resp = await fetch("http://localhost:4000/v1/users/details", {
                     method : 'GET',
                     headers : {'Authorization': `Bearer ${token}`}
                 })
@@ -25,7 +25,7 @@ const Navbar = () => {
             }
         }
         fetchData()
-    })
+    }, [])
     return (
         <nav className="navbar d-flex px-5 w-100">
             <div className="navbar-left d-flex">
@@ -75,15 +75,17 @@ const Navbar = () => {
                             width={30}
                             height={30}
                         />
-                        <div className="nav-user-border ms-4">
-                            <Image 
-                                className='img-fluid nav-user-icon'
-                                src={user.profile_picture === null ? userIcon : user.profile_picture}
-                                alt="Logo Image"
-                                width={40}
-                                height={40}
-                            />
-                        </div>
+                        <Link href='/main/profile' passHref>
+                            <div className="nav-user-border ms-4">
+                                <Image 
+                                    className='img-fluid nav-user-icon'
+                                    src={user ? user.profile_picture !== null ? user.profile_picture : userIcon : userIcon}
+                                    alt="Logo Image"
+                                    width={40}
+                                    height={40}
+                                />
+                            </div>
+                        </Link>
                         </>
                     ) : (
                         <>

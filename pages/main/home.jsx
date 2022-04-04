@@ -11,10 +11,10 @@ import dummy1 from '../../public/dummy1.jpg'
 import dummy2 from '../../public/dummy2.svg'
 
 export const getServerSideProps = async () => {
-    const response = await fetch("https://sunday-brew.herokuapp.com/v1/categories/", {
+    const response = await fetch("http://localhost:4000/v1/categories/", {
         method : 'GET'
     })
-    const responseArticle = await fetch("https://sunday-brew.herokuapp.com/v1/articles/", {
+    const responseArticle = await fetch("http://localhost:4000/v1/articles/", {
         method : 'GET'
     })
     const data = await response.json()
