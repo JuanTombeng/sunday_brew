@@ -31,7 +31,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
-            const data = await fetch('http://localhost:4000/v1/users/login', {
+            const data = await fetch('https://sunday-brew.herokuapp.com/v1/users/login', {
                 method : 'POST',
                 headers : {
                     'Content-Type': 'application/json',

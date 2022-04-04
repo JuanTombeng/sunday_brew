@@ -12,7 +12,7 @@ import saveItem from '../../../public/saveItem.svg'
 
 
 export const getServerSideProps = async ({params}) => {
-    const response = await fetch(`http://localhost:4000/v1/articles/${params.id}`, {
+    const response = await fetch(`https://sunday-brew.herokuapp.com/v1/articles/${params.id}`, {
         method : 'GET'
     })
     const data = await response.json()

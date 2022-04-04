@@ -10,7 +10,7 @@ import filterIcon from '../../../public/filter-icon.svg'
 import Dropdown from 'react-bootstrap/Dropdown'
 
 export const getServerSideProps = async () => {
-    const response = await fetch("http://localhost:4000/v1/articles/", {
+    const response = await fetch("https://sunday-brew.herokuapp.com/v1/articles/", {
         method : 'GET'
     })
     const data = await response.json()

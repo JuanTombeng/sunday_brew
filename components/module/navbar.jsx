@@ -12,7 +12,7 @@ const Navbar = () => {
     useEffect(async () => {
         try {
             const token = JSON.parse(localStorage.getItem('token'))
-            const resp = await fetch("http://localhost:4000/v1/users/details   ", {
+            const resp = await fetch("https://sunday-brew.herokuapp.com/v1/users/details", {
                 method : 'GET',
                 headers : {'Authorization': `Bearer ${token}`}
             })
