@@ -24,7 +24,7 @@ const Footer = () => {
                         Morning Brew
                     </p>
                     <Image 
-                        className='img-fluid pb-3'
+                        className='img-fluid footer-logo pb-3'
                         src={tea}
                         alt="Logo Image"
                         width={50}

@@ -28,46 +28,52 @@ const ArticleDetails = ({article}) => {
     console.log(article)
     return (
         <>
-            <section className={`${style['main-wraper']}`}>
+            <section className={`${style['main-wrapper']}`}>
                 <div className="d-flex justify-content-center my-5">
                     <h2 className={`${style['article-details-heading']}`}>Article Viewer</h2>
                 </div>
             </section>
-            <section className={`${style['article-upper']} d-flex`}>
-                <div className="d-flex w-50 h-100 me-2">
-                    <div style={{width: '100%', height: '100%', position: 'relative'}}>
-                        <Image 
-                            className='img-fluid pb-2'
-                            src={article ? article.article_picture : 'Loading..'}
-                            alt="Logo Image"
-                            layout='fill'
-                            objectFit='contain'
-                        />
-                    </div>
+            <section className={`container d-flex`}>
+                <div className="d-flex w-50 h-100">
+                    <Image
+                        className='img-fluid'
+                        src={article ? article.article_picture : 'Loading..'}
+                        alt="Logo Image"
+                        width={600}
+                        height={400}
+                    />
                 </div>
                 <div className="d-flex w-50 h-100 flex-column justify-content-evenly align-items-start ms-3">
                     <h2 className={`${style['article-detail-title']}`}>{article.article_title}</h2>
-                    <div className="d-flex flex-column align-items-start my-3">
-                        <h4 className={`${style['article-detail-author']}`}>{article.fullname}</h4>
-                        <p className={`${style['article-detail-date']}`}>{moment(article.created_at).format('DD MMM, YYYY')}</p>
+                    <div className="d-flex align-items-start my-3">
+                        <Image
+                            className='img-fluid'
+                            src={article ? article.profile_picture : 'Loading..'}
+                            alt="Logo Image"
+                            width={60}
+                            height={60}
+                        />
+                        <div className='d-flex flex-column ms-2'>
+                            <h4 className={`${style['article-detail-author']}`}>{article.fullname}</h4>
+                            <p className={`${style['article-detail-date']}`}>{moment(article.created_at).format('DD MMM, YYYY')}</p>
+                        </div>
                     </div>
-                    <div className="d-flex mb-3">
-                        <p className={`${style['article-detail-author']}`}>{article.likes}</p>
-                        <Image 
-                            className='img-fluid pb-2'
+                    <div className="d-flex align-items-center mb-3">
+                        <p className={`${style['article-detail-author']}`}>Likes :  {article.likes}</p>
+                    </div>
+                    <div className="d-flex align-items-center mb-3">
+                        <Image
+                            className='img-fluid'
                             src={saveItem}
                             alt="Logo Image"
                             height={40}
                             width={40}
                         />
+                        <p className={`${style['article-detail-author']}`}>Save Article</p>
                     </div>
-                    <Button 
-                        className={`${style['article-detail-button']} w-100`}>
-                        Start Exploring
-                    </Button>
                 </div>
             </section>
-            <section className={`${style['article-lower']} d-flex my-3`}>
+            <section className={`container d-flex mt-5 py-5`}>
                 <p className={`${style['article-detail-parag']}`}>{article.article_description}</p>
             </section>
         </>

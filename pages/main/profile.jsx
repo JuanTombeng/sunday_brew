@@ -14,7 +14,7 @@ const Profile = () => {
     const [form, setForm] = useState({
         username : '',
         fullname : '',
-        email : '',
+        new_email : '',
         password : '',
         job_title : '',
         job_description : ''
@@ -51,7 +51,7 @@ const Profile = () => {
     }
 
     const handleSubmit = () => {
-        console.log(form)
+
     }
     return (
         <>
@@ -84,20 +84,27 @@ const Profile = () => {
                                 <p>{user && user.job_description}</p>
                             </div>
                         </div>
-                        <div className={`${style['profile-small-box']} d-flex justify-content-between`}>
-                            <div className={`${style['list']} d-flex flex-column align-items-center`}>
-                                <h2>52</h2>
-                                <p>Post</p>
-                            </div>
-                            <div className={`${style['list']} d-flex flex-column align-items-center`}>
-                                <h2>250</h2>
-                                <p>Visitor</p>
-                            </div>
-                            <div className={`${style['list']} d-flex flex-column align-items-center`}>
-                                <h2>4.5K</h2>
-                                <p>Comment</p>
-                            </div>
-                        </div>
+                        {
+                            user && user.role_name === 'author' ?
+                                (
+                                    <>
+                                    <div className={`${style['profile-small-box']} d-flex justify-content-between`}>
+                                        <div className={`${style['list']} d-flex flex-column align-items-center`}>
+                                            <h2>52</h2>
+                                            <p>Post</p>
+                                        </div>
+                                        <div className={`${style['list']} d-flex flex-column align-items-center`}>
+                                            <h2>250</h2>
+                                            <p>Visitor</p>
+                                        </div>
+                                        <div className={`${style['list']} d-flex flex-column align-items-center`}>
+                                            <h2>4.5K</h2>
+                                            <p>Comment</p>
+                                        </div>
+                                    </div>
+                                    </>
+                                ) : (null)
+                        }
                     </div>
                     <div className={`${style['bottom']} d-flex flex-column justify-content-center`}>
                         <div className={`${style['profile-menu']} d-flex w-100 px-5 align-items-center`}>
@@ -151,8 +158,8 @@ const Profile = () => {
                             className={`${style['profile-input']}`}
                             placeholder={user && user.email}
                             onChange={handleForm}
-                            value={form.email}
-                            name="email"
+                            value={form.new_email}
+                            name="new_email"
                             type="email"
                             />
                             <Input 
@@ -179,9 +186,9 @@ const Profile = () => {
                             />
                             <Input 
                             labelClass={`${style['label-input']} mb-2`} 
-                            label="Password :"
+                            label="Password : (Password is hidden)"
                             className={`${style['profile-input']}`}
-                            placeholder='user password'
+                            placeholder='Insert new password to update your password'
                             onChange={handleForm}
                             value={form.password}
                             name="password"
@@ -196,6 +203,7 @@ const Profile = () => {
                             onChange={handleForm}
                             value={form.job_description}
                             name="job_description"
+                            maxLength="100"
                             />
                         </div>
                     </div>

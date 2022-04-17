@@ -10,7 +10,7 @@ const AuthLayout = ({ children }) => {
         <div className="auth-layout d-flex">
             <div className="left d-flex flex-column p-4 justify-content-between">
                 <div className="back-to-home d-flex">
-                    <Link href="/main/home" passHref>
+                    <Link href="/" passHref>
                         <p className="back-home-text">
                             <Image
                                 className='img-fluid icon-tea'

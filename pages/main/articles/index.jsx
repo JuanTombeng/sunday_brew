@@ -10,10 +10,22 @@ import filterIcon from '../../../public/filter-icon.svg'
 import Dropdown from 'react-bootstrap/Dropdown'
 
 export const getServerSideProps = async () => {
-    const response = await fetch("http://localhost:4000/v1/articles/", {
+    const response = await fetch(`${process.env.NEXT_APP_BACKEND_URL}/v1/articles/?category=technology`, {
         method : 'GET'
     })
-    const data = await response.json()
+    const response1 = await fetch(`${process.env.NEXT_APP_BACKEND_URL}/v1/articles/?category=food`, {
+        method : 'GET'
+    })
+    const response2 = await fetch(`${process.env.NEXT_APP_BACKEND_URL}/v1/articles/?category=politics`, {
+        method : 'GET'
+    })
+    const tech = await response.json()
+    const techData = tech.data
+    const food = await response1.json()
+    const foodData = food.data
+    const politics = await response2.json()
+    const politicsData = politics.data
+    const data = await techData.concat(foodData, politicsData)
     return {
         props : {
             data : data
@@ -41,8 +53,8 @@ const Article = ({data}) => {
                     </Link>
                 </div>
             </section>
-            <section className={`${style["filter-tags"]} d-flex flex-column`}>
-                <div className="d-flex justify-content-between mb-3">
+            {/* <section className={`${style["filter-tags"]} d-flex flex-column justify-content-center mt-5`}>
+                <div className="d-flex justify-content-between">
                     <div className="d-flex">
                         <Dropdown>
                             <Dropdown.Toggle 
@@ -71,17 +83,21 @@ const Article = ({data}) => {
                         18 categories
                     </p>
                 </div>
-                
-            </section>
-            <section className={`${style["display-article"]} d-flex flex-wrap justify-content-center`}>
-                {data?.data.map((item) => {
+            </section> */}
+            <section className={`container d-flex flex-wrap my-5`}>
+                {data?.map((item) => {
                     return <Link href={`articles/${item.id}`} passHref key={`${item.id}`}>
                             <a>
                                 <ArticleCard image={item.article_picture} title={item.article_title} subtitle={item.article_description} 
-                                like={item.like} time={item.created_at} />
+                                like={item.likes} time={item.created_at} />
                             </a>
                             </Link>
                 })}
+                <div className="d-flex flex-column justify-content-center mx-3">
+                    <h4 className="article-card-subtitle d-flex justify-content-center" style={{borderBottom : '1px solid black', paddingBottom : '10px'}}>
+                        More Articles in the future
+                    </h4>
+                </div>
             </section>
         </>
     )

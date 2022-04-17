@@ -40,7 +40,7 @@ const Login = () => {
             })
             const result = await data.json()
             localStorage.setItem('token', JSON.stringify(result?.data.token))
-            router.push('/main/home')
+            router.push('/')
         } catch (error) {
             setErrorMessage(error.message)
         }

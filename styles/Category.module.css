@@ -31,7 +31,7 @@
 .hero-button {
     height: 70px;
     width: 170px;
-    background: #865439;
+    background: #11468F;
     border: transparent;
     box-sizing: border-box;
     border-radius: 4px;
@@ -73,6 +73,44 @@
     font-size: 20px;
     line-height: 27px;
     text-align: right;
-    color: #BF9270;
+    color: #11468F;
+    margin: 0;
+}
+
+.category-card {
+    height: 200px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #0D253C;
+}
+
+.category-card-image {
+    border-radius: 10px;
+}
+
+.category-card-title {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 33px;
+    color: #0D253C;
+    margin: 0;
+}
+
+.category-card-subtitle {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 27px;
+    color: #11468F;
+    margin: 0;
+}
+
+.category-card-time {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 27px;
+    color: #0c2c5a;
     margin: 0;
 }

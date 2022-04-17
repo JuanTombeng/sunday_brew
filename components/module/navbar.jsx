@@ -29,7 +29,7 @@ const Navbar = () => {
     return (
         <nav className="navbar d-flex px-5 w-100">
             <div className="navbar-left d-flex">
-                <Link href="/main/home" passHref>
+                <Link href="/" passHref>
                         <h2 className="app-title d-flex">
                             Sunday Brew
                             <Image 
@@ -43,7 +43,7 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className="navbar-middle d-flex justify-content-between">
-                <Link href="/main/home" passHref>
+                <Link href="/" passHref>
                     <div className="nav-item active">
                         Home
                     </div>

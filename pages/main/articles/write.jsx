@@ -5,21 +5,33 @@ import { useRouter } from 'next/router';
 import MainLayout from "../../../components/layout/MainLayout";
 import Input from "../../../components/base/Input";
 import Button from "../../../components/base/Button";
+import insertIcon from "../../../public/insert-icon.svg"
 import style from '../../../styles/ArticleNew.module.css'
+import filterIcon from "../../../public/filter-icon.svg";
 
 const NewArticle = () => {
     return (
         <>
-            <section className="container-fluid d-flex flex-column p-0">
-                <div className={`${style['top-wrapper']} d-flex`}>
-                    <h3>Back</h3>
-                    <h2>Write Article</h2>
+            <section className="container d-flex flex-column p-0">
+                <div className={`${style['top-wrapper']} d-flex flex-column`}>
+                    <Link href='/main/articles' passHref>
+                        <h3>Back</h3>
+                    </Link>
+                    <div className='d-flex justify-content-center'>
+                        <h2>Write Article</h2>
+                    </div>
                 </div>
                 <div className={`${style['middle-wrapper']} d-flex`}>
                     <div className={`${style['article-picture-wrapper']} d-flex w-25`}>
-                        
+                        <Image
+                            className='img-fluid pb-2'
+                            src={insertIcon}
+                            alt="Logo Image"
+                            width={50}
+                            height={50}
+                        />
                     </div>
-                    <div className="d-flex flex-column w-75 ms-2">
+                    <div className="d-flex flex-column w-75 ms-4">
                         <div className="d-flex">
                             <Input
                             className={`${style['article-input']} w-50 me-3`}
@@ -57,10 +69,12 @@ const NewArticle = () => {
                 </div>
                 <div className={`${style['bottom-wrapper']} d-flex`}>
                     <div className="d-flex justify-content-center align-items-center w-25 me-2">
-                        <Button
-                            className={`${style['article-button']}`}>
-                            Choose Cover Photo
-                        </Button>
+                        {/*<Button*/}
+                        {/*    className={`${style['article-button']}`}*/}
+                        {/*    type='button'>*/}
+                        {/*    Choose Cover Photo*/}
+                        {/*</Button>*/}
+                        <input className='form-control form-control-lg' type="file" id="file"/>
                     </div>
                     <div className="d-flex justify-content-center align-items-center w-75 ms-2">
                         <Button

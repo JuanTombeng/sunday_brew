@@ -1,5 +1,6 @@
 import MainLayout from "../../components/layout/MainLayout"
 import Image from 'next/image'
+import Link from "next/link";
 import style from '../../styles/Category.module.css'
 import Button from "../../components/base/Button"
 import CategoryCard from "../../components/module/CategoryCard"
@@ -10,7 +11,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 
 export const getServerSideProps = async () => {
-    const response = await fetch("http://localhost:4000/v1/categories/", {
+    const response = await fetch(`${process.env.NEXT_APP_BACKEND_URL}/v1/categories/`, {
         method : 'GET'
     })
     const data = await response.json()
@@ -22,6 +23,7 @@ export const getServerSideProps = async () => {
 }
 
 const Category = ({data}) => {
+    console.log(data)
     return (
         <>
             <section className={`${style['main-wrapper']} d-flex`}>
@@ -34,41 +36,38 @@ const Category = ({data}) => {
                     </p>
                 </div>
             </section>
-            <section className={`${style["filter-tags"]} d-flex flex-column`}>
-                <div className="d-flex justify-content-between mb-3">
-                    <div className="d-flex">
-                        <Dropdown>
-                            <Dropdown.Toggle 
-                                style={{ background: 'none', border: 'transparent', width: 70, height : 70, marginRight: '10px', boxShadow: 'none'}} 
-                                variant="primary" id="dropdown-basic">
-                                <Image 
-                                    className='img-fluid pb-2'
-                                    src={filterIcon}
-                                    alt="Logo Image"
-                                    width={50}
-                                    height={50}
-                                />
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu style={{ width: 200}}>
-                                <Dropdown.Item href="#/section-1">Name (A - Z)</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Name (Z - A)</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Last Added</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Last Modified</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <p className={`${style["filter-tags-title"]} d-flex`}>
-                            Sort by Last Added
-                        </p>
-                    </div>
-                    <p className={`${style["filter-tags-subtitle"]} d-flex`}>
-                        18 categories
-                    </p>
-                </div>
-                
-            </section>
-            <section className={`${style["display-category"]} d-flex flex-wrap justify-content-center`}>
+            <section className={`container d-flex flex-wrap justify-content-center my-5`}>
                 {data?.data.map((item) => {
-                    return <CategoryCard key={item.id} title={item.category_name} image={item.category_picture === null ? dummy1 : item.category_picture} />
+                    return (
+                        <div className={`${style['category-card']} d-flex my-3`} key={item.id}>
+                            <Image
+                                className={`${style['category-card-image']} d-flex w-25`}
+                                src={item && item.category_picture}
+                                alt="Logo Image"
+                                width={260}
+                                height={200}
+                            />
+                            <div className='d-flex flex-column justify-content-between flex-fill px-3 w-75'>
+                                <div className="d-flex h-25 pb-2" style={{borderBottom : '1px solid #11468F'}}>
+                                    <h2 className={`${style['category-card-title']}`}>{item && item.category_name}</h2>
+                                </div>
+                                <div className='d-flex align-items-center h-75 justify-content-between'>
+                                    <div className="d-flex flex-column w-75">
+                                        <p className={`${style['category-card-subtitle']}`}>{item && item.category_description}</p>
+                                        <p className={`${style['category-card-time']}`}>Created :
+                                            {item && item.created_at}
+                                        </p>
+                                    </div>
+                                    <Link href={`articles/${item && item.category_name.toLowerCase()}`} passHref>
+                                        <Button
+                                            className={`${style['hero-button']}`}>
+                                            See Articles
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    )
                 })}
             </section>
         </>
