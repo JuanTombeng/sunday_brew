@@ -13,7 +13,7 @@ const Navbar = () => {
         const fetchData = async () => {
             try {
                 const token = JSON.parse(localStorage.getItem('token'))
-                const resp = await fetch("http://localhost:4000/v1/users/details", {
+                const resp = await fetch(`${process.env.NEXT_APP_BACKEND_URL}/v1/users/details`, {
                     method : 'GET',
                     headers : {'Authorization': `Bearer ${token}`}
                 })
