@@ -32,7 +32,7 @@ const Login = () => {
         try {
             e.preventDefault()
             console.log(form)
-            const data = await fetch(`${process.env.NEXT_APP_BACKEND_URL}/v1/users/login`, {
+            const data = await fetch(`https://sunday-brew.herokuapp.com/v1/users/login`, {
                 method : 'POST',
                 headers : {
                     'Content-Type': 'application/json',
