@@ -31,6 +31,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
+            console.log(form)
             const data = await fetch(`${NEXT_APP_BACKEND_URL}/v1/users/login`, {
                 method : 'POST',
                 headers : {
